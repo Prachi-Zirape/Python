@@ -1,0 +1,1467 @@
+#Date-8/5/22
+#https://www.geeksforgeeks.org/python-dictionary/
+#https://www.w3schools.com/python/python_dictionaries.asp
+
+#1-sort (ascending and descending) a dictionary by value
+from operator import itemgetter
+dicts={1: 2, 3: 4, 4: 3, 2: 1, 0: 0}
+#sorted_dicts=sorted(dicts,key=dicts.values())
+sorted_dicts=sorted(dicts.items(),key=itemgetter(1))
+print(sorted_dicts)
+[(0, 0), (2, 1), (1, 2), (4, 3), (3, 4)]
+lis = [{"name": "Nandini", "age": 20},
+       {"name": "Manjeet", "age": 20},
+       {"name": "Nikhil", "age": 19}]
+print(sorted(lis, key=lambda i: i['age']))
+[{'name': 'Nikhil', 'age': 19}, {'name': 'Nandini', 'age': 20}, {'name': 'Manjeet', 'age': 20}]
+#2- add a key to a dictionary
+dct= {0: 10, 1: 20}
+dct.update({2:30})
+print(dct)
+{0: 10, 1: 20, 2: 30}
+#s2-
+dct= {0: 10, 1: 20}
+dct[2]=30
+print(dct)
+{0: 10, 1: 20, 2: 30}
+#3-concatenate following dictionaries to create a new one
+#s1-does not supported by python3
+dic1={1:10, 2:20}
+dic2={3:30, 4:40}
+dic3={5:50,6:60}
+master_dct=dict(dic1.items()+dic2.items()+dic3.items())
+print(master_dct)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+~\AppData\Local\Temp/ipykernel_12460/2742887401.py in <module>
+      3 dic2={3:30, 4:40}
+      4 dic3={5:50,6:60}
+----> 5 master_dct=dict(dic1.items()+dic2.items()+dic3.items())
+      6 print(master_dct)
+
+TypeError: unsupported operand type(s) for +: 'dict_items' and 'dict_items'
+#s2-using update() method
+dic1={1:10, 2:20}
+dic2={3:30, 4:40}
+dic3={5:50,6:60}
+dic2.update(dic3)
+dic1.update(dic2)
+print(dic1)
+{1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+#s3-**args method
+dic1={1:10, 2:20}
+dic2={3:30, 4:40}
+dic3={5:50,6:60}
+res={**dic1,**dic2,**dic3}
+print(res)
+{1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+#s4-concatenation
+dic1={1:10, 2:20}
+dic2={3:30, 4:40}
+dic3={5:50,6:60}
+res=dic1|dic2|dic3
+print(res)
+{1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+#s4-for loop with update()
+dic1={1:10, 2:20}
+dic2={3:30, 4:40}
+dic3={5:50,6:60}
+dic4 = {}
+for d in (dic1,dic2,dic3):
+    dic4.update(d)
+print(dic4)    
+{1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+#Date-8/6/22
+#4-check whether a given key already exists in a dictionary.
+dct = {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+d=50
+if d in dct:
+    print("Key exist")
+else:
+    print("key does not exist")
+key does not exist
+#5-iterate over dictionaries using for loops
+dct = {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+for d in dct:
+    print(dct.items())
+    print(dct.values())
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+dict_items([(1, 10), (2, 20), (3, 30), (4, 40), (5, 50), (6, 60)])
+dict_values([10, 20, 30, 40, 50, 60])
+d = {'x': 10, 'y': 20, 'z': 30} 
+for dict_key, dict_value in d.items():
+    print(dict_key,'->',dict_value)
+x -> 10
+y -> 20
+z -> 30
+#6- generate and print a dictionary that contains a number (between 1 and n) in the form (x, x*x)
+# Sample Dictionary ( n = 5) : Expected Output : {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+n=5
+dct={}
+for i in range(n+1):
+    dct[i]=i*i
+    #dct[val]=n*n
+print(dct)
+25
+#7-keys are numbers between 1 and 15 (both included) and the values are square of keys
+dct={}
+n=10
+for i in range(1,n+1):
+    dct[i]=i*i
+print(dct)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+#8-merge two Python dictionaries.
+#s1-update method
+#s2-concatenate
+#s3-update with for loop
+
+dct1={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+dct2={6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct=dct1|dct2
+print(dct)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct1={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+dct2={6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct1.update(dct2)
+print(dct1)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct1={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+dct2={6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct={}
+for d in (dct1,dct2):
+    dct.update(d)
+print(dct)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+dct1={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+dct2={6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+res={**dct1,**dct2}
+print(res)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25, 6: 36, 7: 49, 8: 64, 9: 81, 10: 100}
+d1 = {'a': 100, 'b': 200}
+d2 = {'x': 300, 'y': 200}
+d = d1.copy()
+d.update(d2)
+print(d)
+{'a': 100, 'b': 200, 'x': 300, 'y': 200}
+#9- iterate over dictionaries using for loops
+d={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+for k,v in d.items():
+    print(k,':',v)
+1 : 1
+2 : 4
+3 : 9
+4 : 16
+5 : 25
+d = {'Red': 1, 'Green': 2, 'Blue': 3} 
+for color_key, value in d.items():
+     print(color_key, '--> ', d[color_key]) 
+Red -->  1
+Green -->  2
+Blue -->  3
+#10-sum all the items in a dictionary.
+d={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+add=0
+for k,v in d.items():
+    add+=v
+print(add)
+55
+#s2-
+d={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+print(sum(d.values()))
+55
+#11-multiply all the items in a dictionary
+d={1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+mul=1
+for k,v in d.items():
+    mul*=v
+print(mul)
+14400
+#s2-
+my_dict = {'data1':100,'data2':-54,'data3':247}
+result=1
+for key in my_dict:    
+    result=result * my_dict[key]
+
+print(result)
+-1333800
+#12-remove a key from a dictionary
+d = {'Red': 1, 'Green': 2, 'Blue': 3} 
+k='Fine'
+if k in d:
+    del(d[k])
+else:
+    print("Key not found")
+#del(d[1])
+print(d)
+Key not found
+{'Red': 1, 'Green': 2, 'Blue': 3}
+#13- map two lists into a dictionary
+#q1-are those both map as values or one value other being keys
+
+#s1-Naive method
+l_keys=[1,2,3,4,5]
+l_values=[1,4,9,16,25]
+result={}
+for key in l_keys:
+    for value in l_values:
+        result[key]=value
+        #print(key,value)
+        l_values.remove(value)
+        break
+print(result)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+#s2-dictionary comprehension--Only when key and value lists are of same length
+l_keys=[1,2,3,4,5]
+l_values=[1,4,9,16,25]
+result={l_keys[i]:l_values[i] for i in range(len(l_keys))}
+print(result)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+#s3-zip method
+l_keys=[1,2,3,4,5]
+l_values=[1,4,9,16,25]
+result=dict(zip(l_keys,l_values))
+print(result)
+{1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
+#14-sort a given dictionary by key
+dct={8: 1, 2: 4, 3: 9, 14: 16, 5: 25}
+#sorted_dct=sorted(dct.items(),key=lambda x:x for x in dct)
+for key in sorted(dct):
+    print(key,dct[key])
+2 4
+3 9
+5 25
+8 1
+14 16
+#s2-
+dct={8: 1, 2: 4, 3: 9, 14: 16, 5: 25}
+print(sorted(dct.items(), key=lambda i: i))
+[(2, 4), (3, 9), (5, 25), (8, 1), (14, 16)]
+#15-maximum and minimum value in a dictionary
+dct={8: 1, 2: 4, 3: 9, 14: 16, 5: 25}
+print(min(dct.values()))
+print(max(dct.values()))
+1
+25
+#s2-lambda
+my_dict = {'x':500, 'y':5874, 'z': 560}
+
+key_max = max(my_dict.keys(), key=(lambda k: my_dict[k]))
+key_min = min(my_dict.keys(), key=(lambda k: my_dict[k]))
+
+print('Maximum Value: ',my_dict[key_max])
+print('Minimum Value: ',my_dict[key_min])
+Maximum Value:  5874
+Minimum Value:  500
+#16-get a dictionary from an object's fields
+class dictObj(object):
+     def __init__(self):
+         self.x = 'red'
+         self.y = 'Yellow'
+         self.z = 'Green'
+     def do_nothing(self):
+         pass
+test = dictObj()
+print(test.__dict__)
+{'x': 'red', 'y': 'Yellow', 'z': 'Green'}
+#17-remove duplicates from Dictionary.
+#does not make any sense as dictionaries do not have duplicate key values
+d = {'a': 100, 'b': 200, 'c':300, 'd':100,'l':500}
+res={}
+for k,v in d.items():
+    if v not in res.values():
+        res[k]=v
+print(res)
+{'a': 100, 'b': 200, 'c': 300, 'l': 500}
+#18-check a dictionary is empty or not
+d = {'a': 100, 'b': 200, 'c':300, 'd':100,'l':500}
+if len(d)==0:
+    print("dictionary is empty")
+else:
+    print("Not empty")
+Not empty
+#s2-boolean method
+my_dict = {}
+
+if not bool(my_dict):
+    print("Dictionary is empty")
+Dictionary is empty
+#19-combine two dictionary adding values for common keys
+#s1-for loops
+d1 = {'a': 100, 'b': 200, 'c':300}
+d2 = {'a': 300, 'b': 200, 'd':400}
+for key in d1:
+    if key in d2:
+        d1[key]=d1[key]+d2[key]
+    else:
+        pass
+print(d2)
+{'a': 300, 'b': 200, 'd': 400}
+#s2-reduce method
+from functools import reduce
+dict_seq = [
+  {'a': 1, 'b': 2, 'c': 3},
+  {'a':10, 'b': 20},
+  {'b': 100},]
+print(reduce(lambda d1,d2:{k:d1.get(k,0)+d2.get(k,0)
+            for k in set(d1)|set(d2)},dict_seq))  ##get return key,value pair. set return the commpn keys from all dictionaries
+{'c': 3, 'b': 122, 'a': 11}
+#s3-itertools-chain method
+import itertools
+import collections
+
+dict1 = {'a': 12, 'for': 25, 'c': 9}
+dict2 = {'Geeks': 100, 'geek': 200, 'for': 300}
+cdict=collections.defaultdict(int)
+for key,val in itertools.chain(dict1.items(),dict2.items()): #chain both dictionaries together
+    #print(itertools.chain(dict1.items(),dict2.items()))
+    cdict[key]+=val
+print(cdict)
+defaultdict(<class 'int'>, {'a': 12, 'for': 325, 'c': 9, 'Geeks': 100, 'geek': 200})
+#Counter method
+from collections import Counter
+ 
+# initializing two dictionaries
+dict1 = {'a': 12, 'for': 25, 'c': 9}
+dict2 = {'Geeks': 100, 'geek': 200, 'for': 300} 
+# adding the values with common key         
+Cdict = Counter(dict1) + Counter(dict2)
+print(Cdict)
+Counter({'for': 325, 'geek': 200, 'Geeks': 100, 'a': 12, 'c': 9})
+#20-print all unique values in a dictionary.
+d= [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+res={}
+for idx in d:
+    for k,v in idx.items():
+        if v not in res.values():
+            res[k]=v
+print(res)
+{'V': 'S009', 'VI': 'S005', 'VIII': 'S007'}
+d= [{"V":"S001"}, {"V": "S002"}, {"VI": "S001"}, {"VI": "S005"}, {"VII":"S005"}, {"V":"S009"},{"VIII":"S007"}]
+u_value=set(val for dic in d for val in dic.values())
+print("Unique Values: ",u_value)
+Unique Values:  {'S001', 'S002', 'S005', 'S007', 'S009'}
+#21-create and display all combinations of letters, selecting each letter from a different key in a dictionary
+import itertools
+d= {'1':['a','b'], '2':['c','d']}
+for combo in itertools.product(*[d[k] for k in (d.keys())]): #list all values in a list and cross product
+    print(''.join(combo))
+ac
+ad
+bc
+bd
+d= {'1':['q','b'], '2':['c','d']}
+comb=[d[k] for k in (d.keys())]
+print(comb)
+[['q', 'b'], ['c', 'd']]
+#22- find the highest 3 values of corresponding keys in a dictionary.
+from operator import itemgetter
+my_dict = {'a':500, 'b':5874, 'c': 560,'d':400, 'e':5874, 'f': 20} 
+sorted_dict=sorted(my_dict.items(),key=itemgetter(1))
+print(sorted_dict[-3:])
+[('c', 560), ('b', 5874), ('e', 5874)]
+#s2-nlargest method
+from heapq import nlargest
+my_dict = {'a':500, 'b':5874, 'c': 560,'d':400, 'e':5874, 'f': 20}
+three_largest=nlargest(3,my_dict,key=my_dict.get)
+print(three_largest)
+['b', 'e', 'c']
+#Date-8/9/22
+#23-combine values in python list of dictionaries
+#s1-for loops
+from collections import Counter
+l_dic=[{'item': 'item1', 'amount': 400}, {'item': 'item2', 'amount': 300}, {'item': 'item1', 'amount': 750}]
+res_lst=Counter()
+#res_lst=[]
+for idx in l_dic:
+    res_lst[idx['item']]+=idx['amount']
+print(res_lst)
+Counter({'item1': 1150, 'item2': 300})
+#24-create a dictionary from a string
+#Sample string : 'w3resource'
+#Expected output: {'w': 1, '3': 1, 'r': 2, 'e': 2, 's': 1, 'o': 1, 'u': 1, 'c': 1}
+strng='w3resource'
+#from collections import Counter
+res_cnt={}
+for i in strng:
+    res_cnt[i]=strng.count(i)
+print(res_cnt)
+{'w': 1, '3': 1, 'r': 2, 'e': 2, 's': 1, 'o': 1, 'u': 1, 'c': 1}
+#s2-get method
+from collections import defaultdict,Counter
+strng='w3resource'
+my_dct={}
+for letter in strng:
+    my_dct[letter]=my_dct.get(letter,0)+1
+print(my_dct)
+{'w': 1, '3': 1, 'r': 2, 'e': 2, 's': 1, 'o': 1, 'u': 1, 'c': 1}
+#25-print a dictionary in table format
+d={'w': 1, '3': 1, 'r': 2, 'e': 2}
+for key,val in d.items():
+    print(key,'-->',val)
+w --> 1
+3 --> 1
+r --> 2
+e --> 2
+#s2-
+my_dict = {'C1':[1,2,3],'C2':[5,6,7],'C3':[9,10,11]}
+for row in zip(*([key]+value for key,value in sorted(my_dict.items()))):
+    print(*row)
+C1 C2 C3
+1 5 9
+2 6 10
+3 7 11
+#26- count the values associated with key in a dictionary
+student = [{'id': 1, 'success': True, 'name': 'Lary'},
+ {'id': 2, 'success': False, 'name': 'Rabi'},
+ {'id': 3, 'success': True, 'name': 'Alex'}]
+ip_key='id'
+cnt=0
+for dct in student:
+    for key,val in dct.items():
+        #print(key)
+        if key==ip_key:
+            cnt=dct.get(key)+1
+           # print(cnt)
+print(cnt-1)            
+3
+student = [{'id': 1, 'success': True, 'name': 'Lary'},
+ {'id': 2, 'success': False, 'name': 'Rabi'},
+ {'id': 3, 'success': True, 'name': 'Alex'}]
+print(sum(d['id'] for d in student))
+6
+#27-convert a list into a nested dictionary of keys. 
+num_lst=[1,2,3,4]
+new_dct=current={}
+for name in num_lst:
+    current[name]={}
+    current=current[name]
+print(new_dct)
+print(current)
+{1: {2: {3: {4: {}}}}}
+{}
+#28-sort a list alphabetically in a dictionary
+from operator import itemgetter
+l=['b','f','a','e','h']
+dct={}
+for i in l:
+    dct[i]=l.count(i)
+print(sorted(dct.items(),key=itemgetter(0)))
+[('a', 1), ('b', 1), ('e', 1), ('f', 1), ('h', 1)]
+num = {'n1': [2, 3, 1], 'n2': [5, 1, 2], 'n3': [3, 2, 4]}
+sorted_dct={x:sorted(y) for x,y in num.items()}
+print(sorted_dct)
+{'n1': [1, 2, 3], 'n2': [1, 2, 5], 'n3': [2, 3, 4]}
+#29-remove spaces from dictionary keys
+d= {'ite m1 ': 45.50, 'it em2':35, 'i  tem3': 41.30, ' item4':55, 'item   5': 24}
+d_new={}
+for key,val in d.items():
+    new_key=key.replace(" ","")
+    d_new[new_key]=val
+    
+print(d_new)    
+{'item1': 45.5, 'item2': 35, 'item3': 41.3, 'item4': 55, 'item5': 24}
+#translate method
+student_list = {'S  001': ['Math', 'Science'], 'S    002': ['Math', 'English']}
+stud_dct={x.translate({32:None}):y for x ,y in student_list.items()}  ##32 is ascii value for space
+print("New dictionary: ",stud_dct)
+New dictionary:  {'S001': ['Math', 'Science'], 'S002': ['Math', 'English']}
+#30- get the top three items in a shop
+from operator import itemgetter
+d={'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}
+d_sorted=sorted(d.items(),key=itemgetter(1))
+print(d_sorted[-3:])
+[('item3', 41.3), ('item1', 45.5), ('item4', 55)]
+#n_largest method
+from heapq import nlargest
+items={'item1': 45.50, 'item2':35, 'item3': 41.30, 'item4':55, 'item5': 24}
+for name,value in nlargest(3,items.items(),key=itemgetter(1)):
+    print(name,value)
+item4 55
+item1 45.5
+item3 41.3
+#31-get the key, value and item in a dictionary
+dict_num = {1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60}
+for count,(key,value) in enumerate(dict_num.items(),1):
+    print(key,' ',value,' ',count)
+1   10   1
+2   20   2
+3   30   3
+4   40   4
+5   50   5
+6   60   6
+#32-print a dictionary line by line
+students = {'Aex':{'class':'V',
+        'rolld_id':2},
+        'Puja':{'class':'V',
+        'roll_id':3}}
+for a in students:
+    print(a)
+    for b in students[a]:
+        print (b,':',students[a][b])
+Aex
+class : V
+rolld_id : 2
+Puja
+class : V
+roll_id : 3
+#33-check multiple keys exists in a dictionary
+lst=[]
+d=[{'id': 1, 'success': True, 'name': 'Lary'},
+ {'id': 2, 'success': False, 'name': 'Rabi'},
+ {'id': 3, 'success': True, 'name': 'Alex'}]
+for idx in d:
+    if len(idx.keys())>1:
+        print("multiple keys exist in dictionary")
+        break
+    
+multiple keys exist in dictionary
+#34-count number of items in a dictionary value that is a list
+dict =  {'Alex': ['subj1', 'subj2', 'subj3'], 'David': ['subj1', 'subj2']}
+ctr=sum(map(len,dict.values()))
+print("count of values=",ctr)
+count of values= 5
+#35-sort Counter by value
+from collections import Counter
+d={'Math':81, 'Physics':83, 'Chemistry':87}
+lst=[1,2,3,4,2,5,2]
+#sorted_d=sorted(d,key=Counter(d))
+x=Counter(d)
+y=Counter(lst)
+print(x.most_common())
+print(y.most_common())
+[('Chemistry', 87), ('Physics', 83), ('Math', 81)]
+[(2, 3), (1, 1), (3, 1), (4, 1), (5, 1)]
+#36-create a dictionary from two lists without losing duplicate values
+#Sample lists: ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII'], [1, 2, 2, 3]
+#Expected Output: defaultdict(<class 'set'>, {'Class-V': {1}, 'Class-VI': {2}, 'Class-VII': {2}, 'Class-VIII': {3}})
+l1=['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII']
+l2=[1, 3, 2, 3]
+dct={}
+for i,j in zip(l1,l2):
+    dct[i]=j
+print(dct)
+{'Class-V': 1, 'Class-VI': 3, 'Class-VII': 2, 'Class-VIII': 3}
+#s2-defaultdict
+from collections import defaultdict
+class_list = ['Class-V', 'Class-VI', 'Class-VII', 'Class-VIII']
+id_list = [1, 2, 2, 3]
+temp=defaultdict(set)
+for c,i in zip(class_list,id_list):
+    temp[c].add(i)
+print(temp)
+defaultdict(<class 'set'>, {'Class-V': {1}, 'Class-VI': {2}, 'Class-VII': {2}, 'Class-VIII': {3}})
+#37-replace dictionary values with their average
+details= [
+  {'id' : 1, 'subject' : 'math', 'V' : 70, 'VI' : 82},
+  {'id' : 2, 'subject' : 'math', 'V' : 73, 'VI' : 74},
+  {'id' : 3, 'subject' : 'math', 'V' : 75, 'VI' : 86}
+]
+for idx in details:
+    #print(idx['V'])
+    idx['V+VI']=(idx['V']+idx['VI'])/2
+    del idx['VI']
+    del idx['V']
+print(details)   
+[{'id': 1, 'subject': 'math', 'V+VI': 76.0}, {'id': 2, 'subject': 'math', 'V+VI': 73.5}, {'id': 3, 'subject': 'math', 'V+VI': 80.5}]
+def sum_math_v_vi_average(list_of_dicts):
+    for d in list_of_dicts:
+        n1 = d.pop('V')
+        n2 = d.pop('VI')
+        d['V+VI'] = (n1 + n2)/2
+    return list_of_dicts 
+student_details= [
+  {'id' : 1, 'subject' : 'math', 'V' : 70, 'VI' : 82},
+  {'id' : 2, 'subject' : 'math', 'V' : 73, 'VI' : 74},
+  {'id' : 3, 'subject' : 'math', 'V' : 75, 'VI' : 86}
+]
+print(sum_math_v_vi_average(student_details))
+[{'id': 1, 'subject': 'math', 'V+VI': 76.0}, {'id': 2, 'subject': 'math', 'V+VI': 73.5}, {'id': 3, 'subject': 'math', 'V+VI': 80.5}]
+#38-match key values in two dictionaries
+d1={'key1': 1, 'key2': 3, 'key3': 2}
+d2={'key1': 1, 'key2': 2}
+d3={}
+for key,val in d1.items():
+    if (key,val) in d2.items():
+        d3[key]=val
+print(d3)
+{'key1': 1}
+#set method
+x = {'key1': 1, 'key2': 3, 'key3': 2}
+y = {'key1': 1, 'key2': 2}
+for (key,value) in set(x.items()) &set(y.items()):
+    print('%s: %s is present in both x and y' % (key, value))
+key1: 1 is present in both x and y
+#39-store a given dictionary in a json file
+d={'students': [{'firstName': 'Nikki', 'lastName': 'Roysden'}, {'firstName': 'Mervin', 'lastName': 'Friedland'}, 
+                {'firstName': 'Aron ', 'lastName': 'Wilkins'}], 'teachers': [{'firstName': 'Amberly', 'lastName': 'Calico'},
+                                                                             {'firstName': 'Regine', 'lastName': 'Agtarap'}]}
+print(type(d))
+import json
+with open("dicitionary","w") as f:
+    json.dump(d,f,indent=4,sort_keys=True)
+    
+print("\nJson file to dictionary:")
+with open('dicitionary') as f:
+    data=json.load(f)
+print(data)
+<class 'dict'>
+
+Json file to dictionary:
+{'students': [{'firstName': 'Nikki', 'lastName': 'Roysden'}, {'firstName': 'Mervin', 'lastName': 'Friedland'}, {'firstName': 'Aron ', 'lastName': 'Wilkins'}], 'teachers': [{'firstName': 'Amberly', 'lastName': 'Calico'}, {'firstName': 'Regine', 'lastName': 'Agtarap'}]}
+#40-create a dictionary of keys x, y, and z where each key has as value a list from 11-20, 21-30, and 31-40 respectively. 
+#Access the fifth value of each key from the dictionary
+#{'x': [11, 12, 13, 14, 15, 16, 17, 18, 19],
+#'y': [21, 22, 23, 24, 25, 26, 27, 28, 29],
+#'z': [31, 32, 33, 34, 35, 36, 37, 38, 39]}
+
+d={}
+lst_num=[]
+lst_alphabet=['x','y','z']
+cnt=0
+for i in range(11,41,1):
+    if i%10>0:
+        lst_num.append(i)
+    if i%10==0:
+       # print(lst_alphabet[cnt])
+        d[lst_alphabet[cnt]]=lst_num
+        print(d[lst_alphabet[cnt]][4])
+        lst_num=[]
+        cnt+=1
+print(d)
+#print(d.values()[4])
+15
+25
+35
+{'x': [11, 12, 13, 14, 15, 16, 17, 18, 19], 'y': [21, 22, 23, 24, 25, 26, 27, 28, 29], 'z': [31, 32, 33, 34, 35, 36, 37, 38, 39]}
+from pprint import pprint
+dict_nums = dict(x=list(range(11, 20)), y=list(range(21, 30)), z=list(range(31, 40)))
+pprint(dict_nums)
+print(dict_nums["x"][4])
+print(dict_nums["y"][4])
+print(dict_nums["z"][4])
+for k,v in dict_nums.items():
+   print(k, "has value", v)
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+~\AppData\Local\Temp/ipykernel_16656/3861396890.py in <module>
+      1 from pprint import pprint
+----> 2 dict_nums = dict(x=list(range(11, 20)), y=list(range(21, 30)), z=list(range(31, 40)))
+      3 pprint(dict_nums)
+      4 print(dict_nums["x"][4])
+      5 print(dict_nums["y"][4])
+
+TypeError: 'dict' object is not callable
+#Date -8/10/22
+#41-drop empty Items from a given Dictionary.
+d={'c1': 'Red', 'c2': 'Green', 'c3': None}
+d_new={}
+for key,val in d.items():
+    if val==None:
+        continue
+    else:
+        d_new[key]=val
+print(d_new)
+{'c1': 'Red', 'c2': 'Green'}
+dict1 = {'c1': 'Red', 'c2': 'Green', 'c3':None}
+print("Original Dictionary:")
+print(dict1)
+print("New Dictionary after dropping empty items:")
+dict1 = {key:value for (key, value) in dict1.items() if value is not None}
+print(dict1)
+Original Dictionary:
+{'c1': 'Red', 'c2': 'Green', 'c3': None}
+New Dictionary after dropping empty items:
+{'c1': 'Red', 'c2': 'Green'}
+#42-filter a dictionary based on values
+d_stud={'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}
+marks=170
+d_stud_new={}
+for key, val in d_stud.items():
+    if val>marks:
+        d_stud_new[key]=val
+print(d_stud_new)
+{'Cierra Vega': 175, 'Alden Cantrell': 180, 'Pierre Cox': 190}
+marks = {'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}
+print("Original Dictionary:")
+print(marks)
+print("Marks greater than 170:")
+result = {key:value for (key, value) in marks.items() if value >= 170}
+print(result)
+Original Dictionary:
+{'Cierra Vega': 175, 'Alden Cantrell': 180, 'Kierra Gentry': 165, 'Pierre Cox': 190}
+Marks greater than 170:
+{'Cierra Vega': 175, 'Alden Cantrell': 180, 'Pierre Cox': 190}
+#43-convert more than one list to nested dictionary
+l1=['S001', 'S002', 'S003', 'S004']
+l2=['Adina Park', 'Leyton Marsh', 'Duncan Boyle', 'Saim Richards']
+l3=[85, 98, 89, 92]
+l4=[]
+d_nested={}
+#d_inner={}
+for i,j in zip(l2,l3):
+    d_inner={}
+    d_inner[i]=j
+    l4.append(d_inner)
+    
+for key,val in zip(l1,l4):
+    d_nested[key]=val
+#print(l4)
+print(d_nested)
+{'S001': {'Adina Park': 85}, 'S002': {'Leyton Marsh': 98}, 'S003': {'Duncan Boyle': 89}, 'S004': {'Saim Richards': 92}}
+#s2-much optimized
+def nested_dictionary(l1,l2,l3):
+    result=[{x:{y:z}} for (x,y,z) in zip(l1,l2,l3)]
+    return result
+student_id = ["S001", "S002", "S003", "S004"] 
+student_name = ["Adina Park", "Leyton Marsh", "Duncan Boyle", "Saim Richards"] 
+student_grade = [85, 98, 89, 92]
+print(nested_dictionary(student_id, student_name, student_grade))
+[{'S001': {'Adina Park': 85}}, {'S002': {'Leyton Marsh': 98}}, {'S003': {'Duncan Boyle': 89}}, {'S004': {'Saim Richards': 92}}]
+#44-filter the height and width of students, which are stored in a dictionary.
+d_dim={'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+ht=6
+wt=70
+d_dim_new={}
+for key,val in d_dim.items():
+    if val[0]>=ht and val[1]>=wt:
+        d_dim_new[key]=val
+print(d_dim_new)
+{'Cierra Vega': (6.2, 70)}
+def filter_data(students):
+    result={k:s for k,s in students.items() if s[0]>=6.0 and s[1]>=70}
+    return result
+students = {'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+print("Original Dictionary:")
+print(students)
+print("\nHeight > 6ft and Weight> 70kg:")
+print(filter_data(students))
+Original Dictionary:
+{'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)}
+
+Height > 6ft and Weight> 70kg:
+{'Cierra Vega': (6.2, 70)}
+#45-check all values are same in a dictionary
+d_stud={'Cierra Vega': 12, 'Alden Cantrell': 12, 'Kierra Gentry': 12, 'Pierre Cox': 12}
+grade=12
+
+def same_val_chk(dct,grd):
+    if all(x==grd for x in dct.values()):
+        return True
+    return False
+print(same_val_chk(d_stud,grade))
+True
+#46-create a dictionary grouping a sequence of key-value pairs into a dictionary of lists
+def grouping_dct(lst):
+    result={}
+    for k,v in l:
+        result.setdefault(k,[]).append(v)
+    return result
+colors = [('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+print("Original list:")
+print(colors)
+print("\nGrouping a sequence of key-value pairs into a dictionary of lists:")
+print(grouping_dct(colors))
+Original list:
+[('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+
+Grouping a sequence of key-value pairs into a dictionary of lists:
+{'yellow': [1, 3], 'blue': [2, 4], 'red': [1]}
+#47-split a given dictionary of lists into list of dictionaries.
+d_stud={'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+def list_of_dicts(marks):
+    keys=marks.keys()
+    vals=zip(*[marks[k] for k in keys])
+    result=[dict(zip(keys,v)) for v in vals]
+    return result
+marks = {'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+print("Original dictionary of lists:")
+print(marks)
+print("\nSplit said dictionary of lists into list of dictionaries:")
+print(list_of_dicts(marks))
+Original dictionary of lists:
+{'Science': [88, 89, 62, 95], 'Language': [77, 78, 84, 80]}
+
+Split said dictionary of lists into list of dictionaries:
+[{'Science': 88, 'Language': 77}, {'Science': 89, 'Language': 78}, {'Science': 62, 'Language': 84}, {'Science': 95, 'Language': 80}]
+#48-remove a specified dictionary from a given list
+def remove_dictionary(colors, r_id):
+    colors[:] = [d for d in colors if d.get('id') != r_id]
+    return colors
+
+colors = [{"id" : "#FF0000", "color" : "Red"}, 
+          {"id" : "#800000", "color" : "Maroon"}, 
+          {"id" : "#FFFF00", "color" : "Yellow"}, 
+          {"id" : "#808000", "color" : "Olive"}] 
+print('Original list of dictionary:')
+print(colors)
+r_id = "#FF0000"
+print("\nRemove id",r_id,"from the said list of dictionary:")
+print(remove_dictionary(colors, r_id))
+Original list of dictionary:
+[{'id': '#FF0000', 'color': 'Red'}, {'id': '#800000', 'color': 'Maroon'}, {'id': '#FFFF00', 'color': 'Yellow'}, {'id': '#808000', 'color': 'Olive'}]
+
+Remove id #FF0000 from the said list of dictionary:
+[{'id': '#800000', 'color': 'Maroon'}, {'id': '#FFFF00', 'color': 'Yellow'}, {'id': '#808000', 'color': 'Olive'}]
+#49-convert string values of a given dictionary, into integer/float datatypes
+#expected Output-[{'x': 10, 'y': 20, 'z': 30}, {'p': 40, 'q': 50, 'r': 60}]
+
+l=[{'x': '10', 'y': '20', 'z': '30'}, {'p': '40', 'q': '50', 'r': '60'}]
+for i in l:
+    for key,val in i.items():
+        val=int(val)
+        i[key]=val
+print(l)
+[{'x': 10, 'y': 20, 'z': 30}, {'p': 40, 'q': 50, 'r': 60}]
+def convert_to_int(lst):
+    result=[dict([a,int(x)] for a,x in b.items()) for b in lst]
+    return result
+def convert_to_float(lst):
+    result = [dict([a, float(x)] for a, x in b.items()) for b in lst]
+    return result
+
+nums =[{ 'x':'10' , 'y':'20' , 'z':'30' }, { 'p':'40', 'q':'50', 'r':'60'}]
+print("Original list:")
+print(nums)
+print("\nString values of a given dictionary, into integer types:")
+print(convert_to_int(nums))
+nums =[{ 'x':'10.12', 'y':'20.23', 'z':'30'}, { 'p':'40.00', 'q':'50.19', 'r':'60.99'}]
+print("\nOriginal list:")
+print(nums)
+print("\nString values of a given dictionary, into float types:")
+print(convert_to_float(nums))
+Original list:
+[{'x': '10', 'y': '20', 'z': '30'}, {'p': '40', 'q': '50', 'r': '60'}]
+
+String values of a given dictionary, into integer types:
+[{'x': 10, 'y': 20, 'z': 30}, {'p': 40, 'q': 50, 'r': 60}]
+
+Original list:
+[{'x': '10.12', 'y': '20.23', 'z': '30'}, {'p': '40.00', 'q': '50.19', 'r': '60.99'}]
+
+String values of a given dictionary, into float types:
+[{'x': 10.12, 'y': 20.23, 'z': 30.0}, {'p': 40.0, 'q': 50.19, 'r': 60.99}]
+#50-Python Dictionary contains List as value. Write a Python program to clear the list values in the said dictionary. 
+d={'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+for key,val in d.items():
+    val=[]
+    d[key]=val
+print(d)
+{'C1': [], 'C2': [], 'C3': []}
+def test(dct):
+    for key in dct:
+        dct[key].clear()
+    return dct
+dictionary={'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+print("\nOriginal Dictionary:")
+print(dictionary)
+print("\nClear the list values in the said dictionary:")
+print(test(dictionary))
+Original Dictionary:
+{'C1': [10, 20, 30], 'C2': [20, 30, 40], 'C3': [12, 34]}
+
+Clear the list values in the said dictionary:
+{'C1': [], 'C2': [], 'C3': []}
+#51-Dictionary contains List as value. Write a Python program to update the list values in the said dictionary
+#{'Math': [89, 90, 91], 'Physics': [90, 92, 87], 'Chemistry': [90, 87, 93]}
+
+d_ip={'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+ip_key='Math'
+ip_val=[89, 90, 91]
+
+def update_dct(dct,key_ip,val_ip):
+    for key,val in dct.items():
+        if key==key_ip:
+            val=val_ip
+            dct[key]=val
+    return dct
+print(update_dct(d_ip,ip_key,ip_val))
+{'Math': [89, 90, 91], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+def test(dictionary):
+    dictionary['Math'] = [x+1 for x in dictionary['Math']]
+    dictionary['Physics'] = [x-2 for x in dictionary['Physics']]
+    return dictionary
+
+dictionary = { 
+               'Math' : [88, 89, 90], 
+               'Physics' : [92, 94, 89],
+               'Chemistry' : [90, 87, 93]
+             }
+print("\nOriginal Dictionary:")
+print(dictionary)
+print("\nUpdate the list values of the said dictionary:")
+print(test(dictionary))
+Original Dictionary:
+{'Math': [88, 89, 90], 'Physics': [92, 94, 89], 'Chemistry': [90, 87, 93]}
+
+Update the list values of the said dictionary:
+{'Math': [89, 90, 91], 'Physics': [90, 92, 87], 'Chemistry': [90, 87, 93]}
+#52-extract a list of values from a given list of dictionarie
+d_ip=[{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+key_ip='Science'
+def val_extract(dct,sub):
+    lst=[]
+    for i in dct:
+        for key,val in i.items():
+            if key==sub:
+                lst.append(val)
+    return lst
+    #return "No subject found"
+print(val_extract(d_ip,key_ip))
+[92, 94, 88]
+def test(lst,marks):
+    result=[d[marks]for d in lst if marks in d]
+    return result
+marks = [{'Math': 90, 'Science': 92}, 
+         {'Math': 89, 'Science': 94}, 
+         {'Math': 92, 'Science': 88}]
+
+print("\nOriginal Dictionary:")
+print(marks)
+subj = "Science"
+print("\nExtract a list of values from said list of dictionaries where subject =",subj)
+print(test(marks, subj))
+Original Dictionary:
+[{'Math': 90, 'Science': 92}, {'Math': 89, 'Science': 94}, {'Math': 92, 'Science': 88}]
+
+Extract a list of values from said list of dictionaries where subject = Science
+[92, 94, 88]
+#53-find the length of a given dictionary values
+dct={1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+dct_len={}
+for key, val in dct.items():
+    dct_len[val]=len(val)
+print(dct_len)
+{'red': 3, 'green': 5, 'black': 5, 'white': 5}
+#54- get the depth of a dictionary.
+#s1-recursion+map
+def dict_depth(d):
+    if isinstance(d,dict):
+        return 1+(max(map(dict_depth,d.values()))if d else 0)
+    return 0
+dic = {'a':1, 'b': {'c': {'d': {}}}}
+print(dict_depth(dic))
+4
+#s2-recursion
+def dict_depth(dic,level=1):
+    if not isinstance(dic,dict) or not dic:
+        return level
+    return max(dict_depth(dic[key],level+1)for key in dic)
+dic = {1:'a', 2: {3: {4: {}}}} 
+print(dict_depth(dic))
+4
+#s3-popping values of dictionary while traversing levels
+def dict_depth(myDict):
+    depth=1
+    obj=[(k,depth+1)for k in myDict.values() if isinstance(k,dict)]
+    max_depth=0
+    while(obj):
+        n,depth=obj.pop()
+        max_depth=max(max_depth,depth)
+        obj=obj+[(k, depth + 1) for k in n.values()
+                                 if isinstance(k, dict)]         
+    return max_depth
+myDict = {1:'a', 2: {3: {4:{}}}}
+print(dict_depth(myDict))
+4
+#s4-counting curly brackets{}
+def dict_depth(dic, level = 1):
+      
+    str_dic = str(dic)
+    counter = 0
+    for i in str_dic:
+        if i == "{":
+            counter += 1
+    return(counter)
+  
+# Driver code
+dic = {1:'Geek', 2: {3: {4: {}}}}
+print(dict_depth(dic))
+4
+#55- access dictionary key's element by index
+#s1-enumeration
+d={1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+def get_nth_key(dct,n=0):
+    if n<0:
+        n+=len(dct)
+    for i,key in enumerate(dct.keys()):
+        if i==n:
+            return key
+    raise IndexError("dictionary index out of range") 
+print(get_nth_key(d,3))
+4
+#list+index method
+test_dict = {'all' : 1, 'food' : 2, 'good' : 3, 'have' : 4}
+search_key = 'good'
+res=list(test_dict.keys()).index(search_key)
+print("Index of search key is : " + str(res))
+Index of search key is : 2
+#s3-list method
+num = {'physics': 80, 'math': 90, 'chemistry': 86}
+print(list(num)[0])
+physics
+#56-convert a given dictionary into a list of lists
+d={1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+master_last=[]
+for key,val in d.items():
+    lst=[]
+    lst.append(key)
+    lst.append(val)
+    master_last.append(lst)
+print(master_last)
+[[1, 'red'], [2, 'green'], [3, 'black'], [4, 'white'], [5, 'black']]
+#map method
+def test(dct):
+    result=list(map(list,dct.items()))
+    return result
+color_dict = {1 : 'red', 2 : 'green', 3 : 'black', 4 : 'white', 5 : 'black'}
+print("Original Dictionary:")
+print(color_dict)
+print("Convert the said dictionary into a list of lists:")
+print(test(color_dict))
+Original Dictionary:
+{1: 'red', 2: 'green', 3: 'black', 4: 'white', 5: 'black'}
+Convert the said dictionary into a list of lists:
+[[1, 'red'], [2, 'green'], [3, 'black'], [4, 'white'], [5, 'black']]
+#57-filter even numbers from a given dictionary values.
+d={'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+for key,val in d.items():
+    lst_even=[]
+    for i in val:
+        if i%2==0:
+            lst_even.append(i)
+            val=lst_even
+            d[key]=val
+print(lst_even)
+print(d)
+[8]
+{'V': [4, 6, 10], 'VI': [4, 12], 'VII': [8]}
+def test(dct):
+    result={key:[idx for idx in val if not idx%2]
+           for key,val in dct.items()}
+    return result
+students = {'V' : [1, 4, 6, 10], 'VI' : [1, 4, 12], 'VII' : [1, 3, 8]} 
+print("\nOriginal Dictionary:")
+print(students)
+print("Filter even numbers from said dictionary values:")
+print(test(students))   
+Original Dictionary:
+{'V': [1, 4, 6, 10], 'VI': [1, 4, 12], 'VII': [1, 3, 8]}
+Filter even numbers from said dictionary values:
+{'V': [4, 6, 10], 'VI': [4, 12], 'VII': [8]}
+#Date-8/11/22
+#59-find the specified number of maximum values in a given dictionary
+d={'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}
+N=3
+#result=list(max(lambda y: y for x,y in d.items()))
+result=sorted(d,key=d.get,reverse=True)[:N]
+print(result)
+['f', 'i', 'g']
+#using max method
+d={'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}
+keymax=max(zip(d.values(),d.keys()))[1]
+print(keymax)
+i
+#usong lambda
+d={'a': 5, 'b': 14, 'c': 32, 'd': 35, 'e': 24, 'f': 100, 'g': 57, 'h': 8, 'i': 100}
+keymax=max(d,key=lambda x:d[x])
+print(keymax)
+f
+#60-find shortest list of values with the keys in a given dictionary
+dct= {'V': [10, 12], 'VI': [10], 'VII': [10, 20, 30, 40], 'VIII': [20], 'IX': [10, 30, 50, 70], 'X': [80]} 
+min_val=min([len(dct[x])for x in dct])
+result=[]
+for i in dct:
+    if len(dct[i])==min_val:
+        result.append(i)
+print(result)
+['VI', 'VIII', 'X']
+#61-count the frequency in a given dictionary
+from collections import Counter
+dct={'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+op_dct={}
+Counter(dct.values())
+#for k,v in dct.items():
+    #print(dct.count(str(v)))
+Counter({10: 2, 40: 2, 20: 2, 70: 1, 80: 1})
+#s2-most commmon
+from collections import Counter
+dct={'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+my_counter=Counter(dct)
+print(my_counter.most_common)
+<bound method Counter.most_common of Counter({'X': 80, 'IX': 70, 'VII': 40, 'XI': 40, 'VIII': 20, 'XII': 20, 'V': 10, 'VI': 10})>
+dct={'V': 10, 'VI': 10, 'VII': 40, 'VIII': 20, 'IX': 70, 'X': 80, 'XI': 40, 'XII': 20}
+op_dct={}
+for k,v in dct.items():
+    op_dct[v]=op_dct.get(v,0)+1
+print(op_dct)
+{10: 2, 40: 2, 20: 2, 70: 1, 80: 1}
+#62-extract values from a given dictionaries and create a list of lists from those values
+dct_stud=[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, {'student_id': 2, 'name': 'Lula Powell', 
+            'class': 'V'}, {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, 
+          {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+for i in dct_stud:
+    print(list(i.values()))
+[1, 'Jean Castro', 'V']
+[2, 'Lula Powell', 'V']
+[3, 'Brian Howell', 'VI']
+[4, 'Lynne Foster', 'VI']
+[5, 'Zachary Simon', 'VII']
+def test(dictt,keys):
+    return [list(d[k] for k in keys) for d in dictt] 
+
+students = [
+        {'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, 
+        {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+        {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, 
+        {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, 
+        {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}
+        ]
+
+print("\nOriginal Dictionary:")
+print(students)
+print("\nExtract values from the said dictionarie and create a list of lists using those values:")
+print(test(students,('student_id', 'name', 'class')))
+print(test(students,('student_id', 'name')))
+print(test(students,('name', 'class')))
+Original Dictionary:
+[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'}, {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+
+Extract values from the said dictionarie and create a list of lists using those values:
+[[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'], [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
+[[1, 'Jean Castro'], [2, 'Lula Powell'], [3, 'Brian Howell'], [4, 'Lynne Foster'], [5, 'Zachary Simon']]
+[['Jean Castro', 'V'], ['Lula Powell', 'V'], ['Brian Howell', 'VI'], ['Lynne Foster', 'VI'], ['Zachary Simon', 'VII']]
+#63- program to convert a given list of lists to a dictionary
+lst=[[1, 'Jean Castro', 'V'], [2, 'Lula Powell', 'V'], [3, 'Brian Howell', 'VI'],
+     [4, 'Lynne Foster', 'VI'], [5, 'Zachary Simon', 'VII']]
+dct={}
+for i in lst:
+    dct[i[0]]=i[1:]
+print(dct)
+{1: ['Jean Castro', 'V'], 2: ['Lula Powell', 'V'], 3: ['Brian Howell', 'VI'], 4: ['Lynne Foster', 'VI'], 5: ['Zachary Simon', 'VII']}
+#64-create a key-value list pairings in a given dictionary
+dct={1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+dct_new={}
+for key,val in dct.items():
+    dct_new[key]=val[0]
+print(dct_new)
+{1: 'Jean Castro', 2: 'Lula Powell', 3: 'Brian Howell', 4: 'Lynne Foster', 5: 'Zachary Simon'}
+#s2-
+from itertools import product
+def test(dictt):
+    result=[dict(zip(dictt,sub)) for sub in product(*dictt.values())]
+    return result
+students = {1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+
+print("\nOriginal dictionary:")
+print(students)
+print("\nA key-value list pairings of the said dictionary:")
+print(test(students))
+Original dictionary:
+{1: ['Jean Castro'], 2: ['Lula Powell'], 3: ['Brian Howell'], 4: ['Lynne Foster'], 5: ['Zachary Simon']}
+
+A key-value list pairings of the said dictionary:
+[{1: 'Jean Castro', 2: 'Lula Powell', 3: 'Brian Howell', 4: 'Lynne Foster', 5: 'Zachary Simon'}]
+#65-get the total length of all values of a given dictionary with string values
+dct={'#FF0000': 'Red', '#800000': 'Maroon', '#FFFF00': 'Yellow', '#808000': 'Olive'}
+length=0
+for key,val in dct.items():
+    length+=len(val)
+print(length)
+20
+result=sum((len(values) for values in dct.values()))
+print(result)
+20
+#66-check if a specific Key and a value exist in a dictionary
+stud_lst=[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'}, 
+          {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, 
+          {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+key='name'
+val='Brian Howell'
+for i in stud_lst:
+    if (key,val) in i.items():
+        print("True")
+        #break
+    else:
+        continue
+#print("Key not found")
+True
+def test(dictt,key,val):##works only when key exst in dct
+    if any(sub[key]==val for sub in dictt):
+        return True
+    return False
+students = [
+        {'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, 
+        {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'},
+        {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, 
+        {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, 
+        {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}
+        ]
+
+print("\nOriginal dictionary:")
+print(students)
+print("\nCheck if a specific Key and a value exist in the said dictionary:")
+print(test(students,'student_id', 1))
+print(test(students,'name', 'sBrian Howell'))
+Original dictionary:
+[{'student_id': 1, 'name': 'Jean Castro', 'class': 'V'}, {'student_id': 2, 'name': 'Lula Powell', 'class': 'V'}, {'student_id': 3, 'name': 'Brian Howell', 'class': 'VI'}, {'student_id': 4, 'name': 'Lynne Foster', 'class': 'VI'}, {'student_id': 5, 'name': 'Zachary Simon', 'class': 'VII'}]
+
+Check if a specific Key and a value exist in the said dictionary:
+True
+False
+#67- invert a given dictionary with non-unique hashable values
+old_dict = {'A': 67, 'B': 23, 'C': 45, 'E': 12, 'F': 69, 'G': 67, 'H': 23}
+new_dct={}
+for key,val in old_dict.items():
+    if val in new_dct:
+        new_dct[val].append(key)
+        #continue
+    else:
+        new_dct[val]=[key]
+        
+# Printing new dictionary after swapping
+# keys and values
+print ("Dictionary after swapping is :  ")
+print("keys: values")
+for i in new_dct:
+    print(i, " :", new_dct[i])
+Dictionary after swapping is :  
+keys: values
+67  : ['A', 'G']
+23  : ['B', 'H']
+45  : ['C']
+12  : ['E']
+69  : ['F']
+#Date-8/12/22
+#68-combines two or more dictionaries, creating a list of values for each key
+from collections import defaultdict
+d1={'w': 50, 'x': 100, 'y': 'Green', 'z': 400}
+d2={'x': 300, 'y': 'Red', 'z': 600}
+d3=defaultdict(list)
+#d3={}
+for d in (d1,d2):
+    for key,val in d.items():
+        d3[key].append(val)
+    else:
+        d3[key]=[val]
+print(dict(d3))
+{'w': [50], 'x': [100, 300], 'y': ['Green', 'Red'], 'z': [600]}
+#s2-
+d1 = {'a': 1, 'b': 2, 'c':3, 'd': 9}
+d2 = {'a': 5, 'b': 6, 'c':7, 'e': 4} 
+
+# get keys from one of the dictionary
+d1_ks = [k for k in d1.keys()]
+d2_ks = [k for k in d2.keys()]
+
+all_ks = set(d1_ks + d2_ks)
+
+# call values from each dictionary on available keys
+d_merged = {k: [d1.get(k), d2.get(k)] for k in all_ks}
+
+print(d_merged)
+{'a': [1, 5], 'e': [None, 4], 'b': [2, 6], 'd': [9, None], 'c': [3, 7]}
+#69- group the elements of a given list based on the given function
+lst=['Red', 'Green', 'Black', 'White', 'Pink'] 
+#Function name: len
+d={}
+for i in lst:
+    if (len(i)) in d:
+        d[len(i)].append(i)
+    else:
+        d[len(i)]=[i]
+print(d)
+        
+{3: ['Red'], 5: ['Green', 'Black', 'White'], 4: ['Pink']}
+from collections import defaultdict
+from math import floor
+def test(lst, fn):
+  d = defaultdict(list)
+  for el in lst:
+    d[fn(el)].append(el)
+  return dict(d)
+nums = [7,23, 3.2, 3.3, 8.4]
+print("Original list & function:")
+print(nums," Function name: floor:")
+print("Group the elements of the said list based on the given function:")
+print(test(nums, floor))
+
+print("Original list & function:")
+colors = ['Red', 'Green', 'Black', 'White', 'Pink']
+print(colors," Function name: len:")
+print("Group the elements of the said list based on the given function:")
+print(test(colors, len))
+Original list & function:
+[7, 23, 3.2, 3.3, 8.4]  Function name: floor:
+Group the elements of the said list based on the given function:
+{7: [7], 23: [23], 3: [3.2, 3.3], 8: [8.4]}
+Original list & function:
+['Red', 'Green', 'Black', 'White', 'Pink']  Function name: len:
+Group the elements of the said list based on the given function:
+{3: ['Red'], 5: ['Green', 'Black', 'White'], 4: ['Pink']}
+#70-Python program to map the values of a given list to a dictionary using a function, 
+#where the key-value pairs consist of the original value as the key and the result of the function as the value.
+#{1: 1, 2: 4, 3: 9, 4: 16}
+l=[1,2,3,4]
+def dct_fn(lst,fn):
+    d={}
+    for i in lst:
+        d[i]=fn(i)
+    return d
+print(dct_fn(l,lambda x: x * x))
+{1: 1, 2: 4, 3: 9, 4: 16}
+#s2=
+def test(itr,fn):
+    return dict(zip(itr,map(fn,itr)))
+print(test([1, 2, 3, 4], lambda x: x * x))
+{1: 1, 2: 4, 3: 9, 4: 16}
+#71-retrieve the value of the nested key indicated by the given selector list from a dictionary or list
+from functools import reduce
+from operator import getitem
+def test(d,selectors):
+    return reduce(getitem,selectors,d)
+users = {
+  'Carla ': {
+    'name': {
+      'first': 'Carla ',
+      'last': 'Russell' 
+    },
+    'postIds': [1, 2, 3, 4, 5]
+  }
+}
+print(test(users, ['Carla ', 'name', 'last']))
+print(test(users, ['Carla ', 'postIds', 1]))
+Russell
+2
+#72- invert a dictionary with unique hashable values
+def test(dct):
+    return {value:key for key,value in dct.items()}
+students = {
+  'Theodore': 10,
+  'Mathew': 11,
+  'Roxanne': 9,
+}
+print(test(students))
+{10: 'Theodore', 11: 'Mathew', 9: 'Roxanne'}
+#73-convert a list of dictionaries into a list of values corresponding to the specified key.
+lst=[{'name': 'Theodore', 'age': 18}, {'name': 'Mathew', 'age': 22}, {'name': 'Roxanne', 'age': 20}, {'name': 'David', 'age': 18}]
+op_key='age'
+op_lst=[]
+for i in lst:
+    for key,val in i.items():
+        if key==op_key:
+            op_lst.append(val)
+print(op_lst)
+[18, 22, 20, 18]
+#s2-
+def test(lsts,key):
+    return [x.get(key)for x in lsts]
+students = [
+  { 'name': 'Theodore', 'age': 18 },
+  { 'name': 'Mathew', 'age': 22 },
+  { 'name': 'Roxanne', 'age': 20 },
+  { 'name': 'David', 'age': 18 }
+]
+
+print("Original list of dictionaries:")
+print(students)
+Original list of dictionaries:
+[{'name': 'Theodore', 'age': 18}, {'name': 'Mathew', 'age': 22}, {'name': 'Roxanne', 'age': 20}, {'name': 'David', 'age': 18}]
+#74- create a dictionary with the same keys as the given dictionary and values 
+#generated by running the given function for each value
+
+dct={'Theodore': {'user': 'Theodore', 'age': 45}, 'Roxanne': {'user': 'Roxanne', 'age': 15}, 
+   'Mathew': {'user': 'Mathew', 'age': 21}}
+def test(d,fn):
+    return {(key,fn(val)) for key,val in d.items()}
+users = {
+  'Theodore': { 'user': 'Theodore', 'age': 45 },
+  'Roxanne': { 'user': 'Roxanne', 'age': 15 },
+  'Mathew': { 'user': 'Mathew', 'age': 21 },
+}
+print("Original dictionary elements:")
+print(users)
+print("\nDictionary with the same keys:")
+print(test(users, lambda u : u['age']))
+Original dictionary elements:
+{'Theodore': {'user': 'Theodore', 'age': 45}, 'Roxanne': {'user': 'Roxanne', 'age': 15}, 'Mathew': {'user': 'Mathew', 'age': 21}}
+
+Dictionary with the same keys:
+{('Roxanne', 15), ('Mathew', 21), ('Theodore', 45)}
+#75-find all keys in the provided dictionary that have the given value
+dct={'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+val_op=20
+result=(key for key,val in dct.items() if val==val_op)
+print(list(result))
+['Roxanne', 'Betty']
+#76- combine two lists into a dictionary, where the elements of the first one serve as the keys and 
+#the elements of the second one serve as the values.The values of the first list need to be unique and hashable
+l1=['a', 'b', 'c', 'd', 'e', 'f']
+l2=[1, 2, 3, 4, 5]
+
+def test(lst1,lst2):
+    return dict(zip(lst1,lst2))
+print(test(l1,l2))
+{'a': 1, 'b': 2, 'c': 3, 'd': 4, 'e': 5}
+#77-convert given a dictionary to a list of tuples
+dct={'Red': 1, 'Green': 3, 'White': 5, 'Black': 2, 'Pink': 4}
+lst=(dct.items())
+print(list(lst))
+[('Red', 1), ('Green', 3), ('White', 5), ('Black', 2), ('Pink', 4)]
+#78-create a flat list of all the keys in a flat dictionary.
+dct={'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+lst=(key for key,val in dct.items())
+print(list(lst))
+['Theodore', 'Roxanne', 'Mathew', 'Betty']
+#s2-
+def test(flat_dict):
+  return list(flat_dict.keys())
+students = {
+  'Theodore': 19,
+  'Roxanne': 20,
+  'Mathew': 21,
+  'Betty': 20
+}
+
+print("\nOriginal dictionary elements:")
+print(students)
+print("\nCreate a flat list of all the keys of the said flat dictionary:")
+print(test(students))
+Original dictionary elements:
+{'Theodore': 19, 'Roxanne': 20, 'Mathew': 21, 'Betty': 20}
+
+Create a flat list of all the keys of the said flat dictionary:
+['Theodore', 'Roxanne', 'Mathew', 'Betty']
+#79-create a flat list of all the values in a flat dictionary.
+dct = {
+  'Theodore': 19,
+  'Roxanne': 20,
+  'Mathew': 21,
+  'Betty': 20
+}
+result=(dct.values())
+print(list(result))
+[19, 20, 21, 20]
+#80-find the key of the maximum and minimum value in a dictionary
+dct={'Theodore': 19, 'Roxanne': 22, 'Mathew': 21, 'Betty': 28}
+max_key= (max(dct,key=lambda x:dct[x]))
+print(max_key)
+Betty
+#map max works together
+a = [0,1,2,6]
+b = [5,1,0,7]
+c = [3,8,0,8]
+map(max,a,b,c)
+# [5,8,2,8]
+d = [a,b,c]
+print ([(max(itm) )for itm in zip(a, b, c)])
+[5, 8, 2, 8]
+ 
