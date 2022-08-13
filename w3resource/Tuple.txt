@@ -1,0 +1,369 @@
+#Date 8/12/22
+#1-create a tuple
+x=()
+
+tup=tuple()
+
+print(x)
+print(tup)
+()
+()
+#2-create a tuple with different data types
+tup=(1,'x')
+print(tup)
+(1, 'x')
+#3-create a tuple with numbers and print one item
+tup=(1,3,5)
+print(tup[0])
+1
+#s2-
+#Create a tuple with numbers
+tuplex = 5, 10, 15, 20, 25
+print(tuplex)
+#Create a tuple of one item
+tuplex = 5,
+print(tuplex)
+(5, 10, 15, 20, 25)
+(5,)
+#4-unpack a tuple in several variables
+tuplex = (5, 10, 15)
+n1,n2,n3=tuplex
+print(n1,n2,n3)
+5 10 15
+#5-add an item in a tuple
+tuplex = (5, 10, 15)
+x=list(tuplex)
+x.append(30)
+tuplex=tuple(x)
+print(tuplex)
+
+#--------------------------------------
+tup=(0,3,2,6)
+tup=tup+(9,)
+print(tup)
+#--------------------------------------
+tuplex = tuplex[:5] + (15, 20, 25) + tuplex[:5]
+print(tuplex)
+(5, 10, 15, 30)
+(0, 3, 2, 6, 9)
+(5, 10, 15, 30, 15, 20, 25, 5, 10, 15, 30)
+#6-convert a tuple to a string
+tup=('a','q','r')
+e=''.join(tup)
+print(e)
+aqr
+#7- get the 4th element and 4th element from last of a tuple
+tup=(5, 10, 15, 30, 85, 20, 25, 75, 10, 15, 30)
+print(tup[4],tup[-4])
+85 75
+#8-program to create the colone of a tuple
+from copy import deepcopy
+#create a tuple
+tuplex = ("HELLO", 5, [], True) 
+print(tuplex)
+#make a copy of a tuple using deepcopy() function
+tuplex_colon = deepcopy(tuplex)
+tuplex_colon[2].append(50)
+print(tuplex_colon)
+print(tuplex)
+('HELLO', 5, [], True)
+('HELLO', 5, [50], True)
+('HELLO', 5, [], True)
+#9-find the repeated items of a tuple
+from collections import Counter
+tup=(5, 10, 15, 30, 15, 20, 25, 75, 10, 15, 30)
+coun=Counter(tup)
+for i in coun.most_common(20):
+    print(i)
+(15, 3)
+(10, 2)
+(30, 2)
+(5, 1)
+(20, 1)
+(25, 1)
+(75, 1)
+#Counter method
+from collections import Counter
+tup=(5, 10, 15, 30, 15, 20, 25, 75, 10, 15, 30)
+cnt=Counter(tup)
+for i in cnt:
+    print(i,cnt[i])
+5 1
+10 2
+15 3
+30 2
+20 1
+25 1
+75 1
+#element method
+from collections import Counter
+tup=(5, 10, 15, 30, 15, 20, 25, 75, 10, 15, 30)
+cnt=Counter(tup)
+print(cnt)
+print(list(cnt.elements()))
+Counter({15: 3, 10: 2, 30: 2, 5: 1, 20: 1, 25: 1, 75: 1})
+[5, 10, 10, 15, 15, 15, 30, 30, 20, 25, 75]
+#10-check whether an element exists within a tuple
+tup=(5, 10, 15, 30, 15, 20, 25, 75, 10, 15, 30)
+n=75
+print(60 in tup)
+
+if n in tup:
+    print('Yay')
+else:
+    print('Nay')
+False
+Yay
+#11-convert a list to a tuple.
+lst=[5, 10, 10, 15, 15, 15, 30, 30, 20, 25, 75]
+print(tuple(lst))
+(5, 10, 10, 15, 15, 15, 30, 30, 20, 25, 75)
+#12-remove an item from a tuple
+tup=(5, 10, 10, 15, 15, 15, 30, 30, 20, 25, 75)
+x=list(tup)
+x.remove(10)
+tup=tuple(x)
+print(tup)
+
+tup = tup[:2] + tup[3:]
+print(tup)
+(5, 10, 15, 15, 15, 30, 30, 20, 25, 75)
+(5, 10, 15, 15, 30, 30, 20, 25, 75)
+#13-slice a tuple.
+tup=(5, 10, 10, 15, 15, 15, 30, 30, 20, 25, 75)
+tup = tup[3:7] 
+print(tup)
+(15, 15, 15, 30)
+#14-find the index of an item of a tuple
+tup=(5, 10, 15, 30, 20, 25, 75)
+print(tup.index(15))
+2
+#15-find the length of a tuple
+tup=(5, 10, 15, 30, 20, 25, 75)
+print(len(tup))
+7
+#16-convert a tuple to a dictionary
+tup=(5, 10, 15, 30, 20, 25, 75)
+d={}
+for i in tup:
+    d[i]=2*i
+print(d)
+{5: 10, 10: 20, 15: 30, 30: 60, 20: 40, 25: 50, 75: 150}
+#Date 8/13/22
+#17-unzip a list of tuples into individual lists
+lst=[(1,2),(3,4),(9,0),(5,4)]
+op_lst=[]
+for i in lst:
+    op_lst.append(i[0])
+    op_lst.append(i[1])
+print(op_lst)
+
+print(list(zip(*lst)))
+
+res=(map(None,*lst))
+print(res)
+[1, 2, 3, 4, 9, 0, 5, 4]
+[(1, 3, 9, 5), (2, 4, 0, 4)]
+<map object at 0x0000028B1DC92970>
+#18- reverse a tuple
+tup=(1, 3, 9, 5)
+#print(tup[-1:-(len(tup)-1)])
+y=reversed(tup)
+print(tuple(y))
+(5, 9, 3, 1)
+#19- convert a list of tuples into a dictionary.
+lst=[(1,2),(3,4),(9,0),(5,4)]
+dct={}
+for i in lst:
+    dct[i[0]]=i[1]
+print(dct)
+{1: 2, 3: 4, 9: 0, 5: 4}
+l = [("x", 1), ("x", 2), ("x", 3), ("y", 1), ("y", 2), ("z", 1)]
+d={}
+
+for a,b in l:
+    d.setdefault(a,[]).append(b)
+print(d)
+{'x': [1, 2, 3], 'y': [1, 2], 'z': [1]}
+#20-print a tuple with string formatting
+t = (100, 200, 300)
+print("this is a tuple {}".format(t))
+this is a tuple (100, 200, 300)
+#21-replace last value of tuples in a list
+lst=[(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+n=100
+for i in lst:
+    i[:-1]+(100,)
+print(lst)
+
+print([t[:-1] + (100,) for t in lst])
+[(10, 20, 40), (40, 50, 60), (70, 80, 90)]
+[(10, 20, 100), (40, 50, 100), (70, 80, 100)]
+#22-remove an empty tuple(s) from a list of tuples
+lst=[(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+for i in lst:
+    if len(tuple(i))==0:
+        lst.remove(i)
+print(lst)
+
+L=[(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+L=[t for t in L if t]
+print(L)
+[(), ('',), ('a', 'b'), ('a', 'b', 'c'), 'd']
+[('',), ('a', 'b'), ('a', 'b', 'c'), 'd']
+#23-sort a tuple by its float element
+lst=[('item1', '12.20'), ('item2', '115.10'), ('item3', '24.5')]
+lst_sorted=sorted(lst,key=lambda x:float(x[1]))
+print(lst_sorted)
+[('item1', '12.20'), ('item3', '24.5'), ('item2', '115.10')]
+#24- count the elements in a list until an element is a tuple
+l=['a','d','y',('p',),('item1', '12.20'),'p']
+cnt=0
+for i in l:
+    if type(i)==tuple:
+        break
+    else:
+        #print(i)
+        cnt+=1
+print(cnt)
+3
+#25-convert a given string list to a tuple
+strng='python 3.0'
+tup=tuple()
+for i in strng:
+    tup=tup+(i,)
+print(tup)
+('p', 'y', 't', 'h', 'o', 'n', ' ', '3', '.', '0')
+#26-calculate the product, multiplying all the numbers of a given tuple
+tup=(4, 3, 2, 2, -1, 18)
+result=1
+for i in tup:
+    result*=i
+print(result)
+-864
+#27-calculate the average value of the numbers in a given tuple of tuples
+tup=((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4))
+res_arr=[]
+for i in zip(*tup):
+    result=sum(i)/len(i)
+    res_arr.append(result)
+print(res_arr)
+[30.5, 34.25, 27.0, 23.25]
+#28-convert a tuple of string values to a tuple of integer values
+tup=(('333', '33'), ('1416', '55'))
+new_tup=tuple()
+for i in tup:
+    for j in i:
+        new_tup=new_tup+(int(j),)
+print(new_tup)
+(333, 33, 1416, 55)
+def tuple_int_str(tuple_str):
+    result = tuple((int(x[0]), int(x[1])) for x in tuple_str)
+    return result
+     
+tuple_str =  (('333', '33'), ('1416', '55'))
+print("Original tuple values:")
+print(tuple_str)
+print("\nNew tuple values:")
+print(tuple_int_str(tuple_str))
+Original tuple values:
+(('333', '33'), ('1416', '55'))
+
+New tuple values:
+((333, 33), (1416, 55))
+#29-convert a given tuple of positive integers into an integer
+tup=(10, 20, 40, 5, 70)
+num=''
+for i in tup:
+    num+=str(i)
+print(int(num))
+102040570
+def tuple_to_int(nums):
+    result = int(''.join(map(str,nums)))
+    return result
+
+nums = (1,2,3)
+print("Original tuple: ") 
+print(nums)
+print("Convert the said tuple of positive integers into an integer:")
+print(tuple_to_int(nums))
+Original tuple: 
+(1, 2, 3)
+Convert the said tuple of positive integers into an integer:
+123
+#30-check if a specified element presents in a tuple of tuples
+tup=(('Red', 'White', 'Blue'), ('Green', 'Pink', 'Purple'), ('Orange', 'Yellow', 'Lime'))
+srch='White'
+for i in tup:
+    print(srch in i)
+True
+False
+False
+def check_in_tuples(colors, c):
+    result = any(c in tu for tu in colors)
+    return result
+
+colors = (
+    ('Red', 'White', 'Blue'),
+    ('Green', 'Pink', 'Purple'),
+    ('Orange', 'Yellow', 'Lime'),
+)
+print("Original list:")
+print(colors)
+c1 = 'White'
+print("\nCheck if",c1,"presenet in said tuple of tuples!")
+print(check_in_tuples(colors, c1))
+Original list:
+(('Red', 'White', 'Blue'), ('Green', 'Pink', 'Purple'), ('Orange', 'Yellow', 'Lime'))
+
+Check if White presenet in said tuple of tuples!
+True
+#31-compute element-wise sum of given tuples.
+tup1=(1, 2, 3, 4)
+tup2=(3, 5, 2, 1)
+tup3=(2, 2, 3, 1)
+sum_tup=tuple()
+for i in (zip(tup1,tup2,tup3)):
+    sum_tup+=(sum(i),)
+print(sum_tup)
+(6, 9, 8, 6)
+x = (1,2,3,4)
+y = (3,5,2,1)
+z = (2,2,3,1)
+print("Original lists:")
+print(x)
+print(y)
+print(z)
+print("\nElement-wise sum of the said tuples:")
+result = tuple(map(sum, zip(x, y, z)))
+print(result)
+Original lists:
+(1, 2, 3, 4)
+(3, 5, 2, 1)
+(2, 2, 3, 1)
+
+Element-wise sum of the said tuples:
+(6, 9, 8, 6)
+#32-program to compute the sum of all the elements of each tuple stored inside a list of tuples.
+lst=[(1, 2), (2, 3), (3, 4)]
+result=list(map(sum,lst))
+print(result)
+[3, 5, 7]
+#33-convert a given list of tuples to a list of lists
+lst_tup= [(1, 2), (2, 3), (3, 4)]
+lst=map(list,lst_tup)
+print(list(lst))
+[[1, 2], [2, 3], [3, 4]]
+def test(lst_tuples):
+    result = [list(el) for el in lst_tuples]
+    return result
+lst_tuples = [(1,2), (2,3), (3,4)]
+print("Original list of tuples:")
+print(lst_tuples)
+print("Convert the said list of tuples to a list of lists:")
+print(test(lst_tuples))
+Original list of tuples:
+[(1, 2), (2, 3), (3, 4)]
+Convert the said list of tuples to a list of lists:
+[[1, 2], [2, 3], [3, 4]]
+ 
