@@ -1,0 +1,504 @@
+#Date-8/16/22
+#1-program that iterate over elements repeating each as many times as its count
+from collections import Counter
+c=Counter(p=3,r=4,q=-1,x=0)
+print(list(c.elements()))
+print(c)
+['p', 'p', 'p', 'r', 'r', 'r', 'r']
+Counter({'r': 4, 'p': 3, 'x': 0, 'q': -1})
+#2-find the most common elements and their counts of a specified text.
+from collections import Counter
+l=[('s', 4), ('e', 3), ('f', 5)]
+print(Counter(l).most_common(2))
+
+s = 'lkseropewdssafsdfafkpwe'
+print(Counter(s).most_common(3))
+[(('s', 4), 1), (('e', 3), 1)]
+[('s', 4), ('e', 3), ('f', 3)]
+#3-create a new deque with three items and iterate over the deque's elements
+from collections import deque
+dq=deque('aeiou')
+for element in dq:
+    print(element)
+a
+e
+i
+o
+u
+#4-find the occurrences of 10 most common words in a given text.
+from collections import Counter
+import re
+txt="""The Python Software Foundation (PSF) is a 501(c)(3) non-profit 
+corporation that holds the intellectual property rights behind
+the Python programming language. We manage the open source licensing 
+for Python version 2.1 and later and own and protect the trademarks 
+associated with Python. We also run the North American PyCon conference 
+annually, support other Python conferences around the world, and 
+fund Python related development with our grants program and by funding 
+special projects."""
+words=re.findall('\w+',txt)
+print(Counter(words).most_common(10))
+[('Python', 6), ('the', 6), ('and', 5), ('We', 2), ('with', 2), ('The', 1), ('Software', 1), ('Foundation', 1), ('PSF', 1), ('is', 1)]
+#5-accept some words and count the number of distinct words. Print the number of distinct words and number 
+#of occurrences for each distinct word according to their appearance
+
+from collections import Counter,OrderedDict
+class OrderedCounter(Counter, OrderedDict):
+    pass
+word_arr=[]
+n=int(input("input number of words: "))
+print("input the words: ")
+for i in range(n):
+    word_arr.append(input().strip())
+word_ctr=OrderedCounter(word_arr)
+print(len(word_ctr))
+for word in word_ctr:
+    print(word_ctr[word],end=" ")
+input number of words: 3
+input the words: 
+Yellow
+Green
+Red
+3
+1 1 1 
+#6- accepts number of subjects, subject names and marks. 
+#Input number of subjects and then subject name, marks separated by a space 
+#in next line. Print subject name and marks in order of its first occurrence
+
+import collections,re
+n=int(input("Number of subjects: "))
+
+item_order=collections.OrderedDict()
+
+for i in range(n):
+    sub_mark_lst=re.split(r'(\d+)$',input("input sub name and marks: ").strip())
+    
+    sub_name=sub_mark_lst[0]
+    sub_mark=int(sub_mark_lst[1])
+    
+    if sub_name not in item_order:
+        item_order[sub_name]=sub_mark
+    else:
+        item_order[sub_name]=item_order[sub_name]+sub_mark
+print(list(item_order))      
+for i in item_order:
+    print(i+str(item_order[i]))
+Number of subjects: 2
+input sub name and marks: chem 30
+input sub name and marks: phys 40
+['chem ', 'phys ']
+chem 30
+phys 40
+#7-create a deque and append few elements to the left and right, 
+#then remove some elements from the left, right sides and reverse the deque
+from collections import deque
+
+#create a deque
+d=deque(['Red', 'Green', 'White'])
+print(d)
+
+#append few elements to left
+d.appendleft("pink")
+print(d)
+
+#append few elements to right
+d.append("yellow")
+print(d)
+
+#Removing from the left
+d.popleft()
+print(d)
+
+#Removing from the right
+d.pop()
+print(d)
+
+#Reversing the deque
+d.reverse()
+print(d)
+deque(['Red', 'Green', 'White'])
+deque(['pink', 'Red', 'Green', 'White'])
+deque(['pink', 'Red', 'Green', 'White', 'yellow'])
+deque(['Red', 'Green', 'White', 'yellow'])
+deque(['Red', 'Green', 'White'])
+deque(['White', 'Green', 'Red'])
+#8-create a deque from an existing iterable object
+from collections import deque
+
+tup=(2,4,6)
+d= deque(tup)
+print(d)
+
+d.append(8)
+d.appendleft(0)
+print(d)
+deque([2, 4, 6])
+deque([0, 2, 4, 6, 8])
+#9-add more number of elements to a deque object from an iterable object
+from collections import deque
+tup=(2,4,6)
+d=deque(tup)
+
+tup_extend = (12, 14, 16, 18, 20)
+
+d.extend(tup_extend)
+print(d)
+deque([2, 4, 6, 12, 14, 16, 18, 20])
+#10-remove all the elements of a given deque object
+from collections import deque
+d=deque([1, 3, 5, 7, 9])
+d.clear()
+print(d)
+deque([])
+#11-copy of a deque object and verify the shallow copying process
+from collections import deque
+d1=deque([1, 3, 5, 7, 9])
+
+d2=d1.copy()
+print(id(d1))
+print(id(d2))
+
+print(id(d1[0]))
+print(id(d2[0]))
+1818289153504
+1818287958912
+1818207611184
+1818207611184
+#12-count the number of times a specific element presents in a deque object
+from collections import deque, Counter
+d=deque([1, 3, 5,3, 7, 9,3,3])
+
+print(Counter(d).most_common(1))
+print(d.count(3))
+[(3, 4)]
+4
+#13-rotate a Deque Object specified number (positive) of times.
+from collections import deque
+#import collections
+#d=collections.deque()
+d=deque([2, 4, 6, 8, 10])
+print(d)
+
+d.rotate()
+print(d)
+
+d.rotate(2)
+print(d)
+deque([2, 4, 6, 8, 10])
+deque([10, 2, 4, 6, 8])
+deque([6, 8, 10, 2, 4])
+#14-rotate a Deque Object specified number (negative) of times
+from collections import deque
+d=deque([2, 4, 6, 8, 10])
+
+d.rotate(-2)
+print(d)
+deque([6, 8, 10, 2, 4])
+#15-most common element of a given list
+from collections import Counter
+l=['PHP', 'PHP', 'Python', 'PHP', 'Python', 'JS', 'Python', 'Python', 'PHP', 'Python']
+print(Counter(l).most_common(1)[0][0])
+print(Counter(l).most_common(1))
+Python
+[('Python', 5)]
+#16-find the second lowest total marks of any student(s) from the given names and marks of 
+#each student using lists and lambda. Input number of students, names and grades of each student.
+import collections,re
+
+stud_lst=[]
+stud_dct={}
+
+stud_num=int(input("Enter the number of students : "))
+for stud in range(stud_num):    
+    stud_lst=re.split(r'(\d+)$',input("input student name and marks: ").strip())
+    
+    stud_name=stud_lst[0]
+    stud_marks=int(stud_lst[1])
+    
+    stud_dct[stud_name]=stud_marks
+    
+sorted_dct=sorted(stud_dct,key=lambda x:stud_dct[x])
+print(stud_dct)
+print(sorted_dct[-2])
+Enter the number of students : 3
+input student name and marks: phys 100
+input student name and marks: chem 40
+input student name and marks: marh 90
+{'phys ': 100, 'chem ': 40, 'marh ': 90}
+marh 
+students=[]
+sec_name=[]
+sec_low=0
+n=int(input("Input number of students: "))
+
+for _ in range(n):
+    s_name=input("name: ")
+    score=float(input("Total marks: "))
+    students.append([s_name,score])
+    
+print("\nName and marks of all studets:")
+print(students)
+
+order=sorted(students,key=lambda x:int(x[1]))
+
+for i in range(n):
+    if order[i][1]!=order[0][1]:
+        sec_low=order[i][1]
+        break
+print("\nSecond lowest Marks: ",sec_low)
+Input number of students: 3
+name: Manasi
+Total marks: 50
+name: Akriti
+Total marks: 20
+name: Vidhi
+Total marks: 100
+
+Name and marks of all studets:
+[['Manasi', 50.0], ['Akriti', 20.0], ['Vidhi', 100.0]]
+
+Second lowest Marks:  50.0
+#17-find the majority element from a given array of size n using Collections module
+import collections
+class Solution(object):
+    def majorityElement(self, nums):
+        """
+        :type nums: List[int]
+        :return type: int
+        """
+        count_ele=collections.Counter(nums)
+        return count_ele.most_common()[0][0]
+
+result = Solution().majorityElement([10,10,20,30,40,10,20,10])
+print(result)
+10
+#18-merge more than one dictionary in a single expression
+import collections as ct
+
+def merge_dct(color1,color2):
+    merged_dct=dict(ct.ChainMap({},color1,color2))
+    return merged_dct
+
+d1={'R': 'Red', 'B': 'Black', 'P': 'Pink'} 
+d2={'G': 'Green', 'W': 'White'}
+
+print("\nMerged dictionary:")
+print(merge_dct(d1, d2))
+Merged dictionary:
+{'G': 'Green', 'W': 'White', 'R': 'Red', 'B': 'Black', 'P': 'Pink'}
+#19-program to break a given list of integers into sets of a given positive number. Return true or false
+import collections as clt
+def check_brk_lst(nums,n):
+    coll_data=clt.Counter(nums)
+    for x in sorted(coll_data.keys()):
+        for index in range(1,n):
+            coll_data[x+index]=coll_data[x+index]-coll_data[x]
+            if coll_data[x+index]<0:
+                return False
+    return True
+
+l=[1, 2, 3, 4, 5, 6, 7, 8]
+n=3
+print(check_brk_lst(l,n))
+False
+#20-find the item with maximum frequency in a given list
+from collections import Counter
+l=[2, 3, 8, 4, 7, 9, 8, 2, 6, 5, 1, 6, 1, 2, 3, 2, 4, 6, 9, 1, 2]
+print(Counter(l).most_common(1))
+[(2, 5)]
+#21-count most and least common characters in a given string
+from collections import Counter
+s='hello world'
+print(Counter(s).most_common(1))
+print(Counter(s).most_common(1)[0])
+[('l', 3)]
+('l', 3)
+#Date 8/17/22
+#21-count most and least common characters in a given string
+from collections import Counter
+def max_least_char(str1):
+    temp=Counter(str1)
+    max_char=max(temp,key=temp.get)
+    min_char=min(temp,key=temp.get)
+    return (max_char,min_char)
+s='hello world'
+result = max_least_char(s)
+#print(result)
+print("Most common character of the said string:",result[0])
+print("Least common character of the said string:",result[1])
+Most common character of the said string: l
+Least common character of the said string: h
+#22-insert an element at the beginning of a given OrderedDictionary
+from collections import OrderedDict
+#d=collections.OrderedDict()
+d=OrderedDict([('color1', 'Red'), ('color2', 'Green'), ('color3', 'Blue')])
+tup=({'color4': 'Orange'})
+d.update(tup)
+d.move_to_end('color4',last=False)
+print(d)
+OrderedDict([('color4', 'Orange'), ('color1', 'Red'), ('color2', 'Green'), ('color3', 'Blue')])
+from collections import OrderedDict
+ini_dict1 = OrderedDict([('akshat', '1'), ('nikhil', '2')])
+ini_dict2 = OrderedDict([("manjeet", '4'), ("akash", '4')])
+
+both = OrderedDict(list(ini_dict2.items()) + list(ini_dict1.items()))
+print ("Resultant Dictionary :"+str(both))
+Resultant Dictionary :OrderedDict([('manjeet', '4'), ('akash', '4'), ('akshat', '1'), ('nikhil', '2')])
+#23-get the frequency of the tuples in a given list
+from collections import Counter
+lst=[(['1', '4'], ['4', '1'], ['3', '4'], ['2', '7'], ['6', '8'], ['5', '8'], ['6', '8'], ['5', '7'], ['2', '7'])]
+
+result=Counter(tuple(sorted(i)) for i in lst[0])
+for key,val in result.items():
+    print(key,val)
+('1', '4') 2
+('3', '4') 1
+('2', '7') 2
+('6', '8') 2
+('5', '8') 1
+('5', '7') 1
+#24- calculate the maximum aggregate from the list of tuples (pairs)
+from collections import defaultdict
+def max_aggregate(st_data):
+    temp=defaultdict(int)
+    for name,marks in st_data:
+        temp[name]+=marks
+    return max(temp.items(),key=lambda x:x[1])
+
+l=[('Juan Whelan', 90), ('Sabah Colley', 88), ('Peter Nichols', 7), ('Juan Whelan', 122), ('Sabah Colley', 84)]
+print(max_aggregate(l))
+('Juan Whelan', 212)
+#25-find the characters in a list of strings which occur more than and less than a given number
+from collections import Counter
+from itertools import chain
+
+def agg_max(lst_str,n):
+    temp=(set(sub) for sub in lst_str)
+    counts=Counter(chain.from_iterable(temp))
+    #print(counts)
+    gt_n=[chr for chr, count in counts.items() if count>n]
+    lt_n=[chr for chr, count in counts.items() if count<n]
+    return gt_n,lt_n
+
+l=['abcd', 'iabhef', 'dsalsdf', 'sdfsas', 'jlkdfgd']
+n=3
+result=(agg_max(l,n))
+print(result[0],result[1])
+['d', 'a', 'f'] ['b', 'c', 'e', 'h', 'i', 'l', 's', 'g', 'k', 'j']
+#26- find the difference between two list including duplicate elements. Use collections module.
+from collections import Counter
+l1 = [1,1,2,3,3,4,4,5,6,7]
+l2 = [1,1,2,4,5,6]
+c1=Counter(l1)
+c2=Counter(l2)
+diff=c1-c2
+print(list(diff.elements()))
+[3, 3, 4, 7]
+#Date-8/18/22
+#27-remove duplicate words from a given string use collections module
+from collections import OrderedDict
+s="Python Exercises Practice Solution Exercises"
+print("\nAfter removing duplicate words from the said string:")
+result = ' '.join(OrderedDict((w,w) for w in s.split()).keys())
+print(result)
+After removing duplicate words from the said string:
+Python Exercises Practice Solution
+#28-create a dictionary grouping a sequence of key-value pairs into a dictionary of lists
+from collections import defaultdict
+l=[('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)]
+d=defaultdict(list)
+for key,val in l:
+    d[key].append(val)
+print(d)
+defaultdict(<class 'list'>, {'yellow': [1, 3], 'blue': [2, 4], 'red': [1]})
+#29-get the frequency of the elements in a given list of lists.
+from collections import Counter
+from itertools import chain
+l=[[1, 2, 3, 2], [4, 5, 6, 2], [7, 1, 9, 5]]
+print(Counter(chain.from_iterable(l)))
+Counter({2: 3, 1: 2, 5: 2, 3: 1, 4: 1, 6: 1, 7: 1, 9: 1})
+#30-count the occurrence of each element of a given list
+from collections import Counter
+
+l=[3, 5, 0, 3, 9, 5, 8, 0, 3, 8, 5, 8, 3, 5, 8, 1, 0, 2]
+print(Counter(l))
+Counter({3: 4, 5: 4, 8: 4, 0: 3, 9: 1, 1: 1, 2: 1})
+#31-count the most common words in a dictionary
+from collections import Counter
+l = [
+   'red', 'green', 'black', 'pink', 'black', 'white', 'black', 'eyes',
+   'white', 'black', 'orange', 'pink', 'pink', 'red', 'red', 'white', 'orange',
+   'white', "black", 'pink', 'green', 'green', 'pink', 'green', 'pink',
+   'white', 'orange', "orange", 'red'
+]
+print(Counter(l).most_common(1))
+[('pink', 6)]
+#32-find the class wise roll number from a tuple-of-tuples.
+from collections import defaultdict
+classes = (
+    ('V', 1),
+    ('VI', 1),
+    ('V', 2),
+    ('VI', 2),
+    ('VI', 3),
+    ('VII', 1),
+)
+d=defaultdict(list)
+for key, val in classes:
+    d[key].append(val)
+print(d)
+defaultdict(<class 'list'>, {'V': [1, 2], 'VI': [1, 2, 3], 'VII': [1]})
+#33- count the number of students of individual class
+from collections import Counter
+classes = (
+    ('V', 1),
+    ('VI', 1),
+    ('V', 2),
+    ('VI', 2),
+    ('VI', 3),
+    ('VII', 1),
+)
+
+print(Counter(clas_name for clas_name,stud_num in classes))
+Counter({'VI': 3, 'V': 2, 'VII': 1})
+#34-create an instance of an OrderedDict using a given dictionary. 
+#Sort the dictionary during the creation and print the members of the dictionary in reverse order
+from collections import OrderedDict
+d={'Afghanistan': 93, 'Albania': 355, 'Algeria': 213, 'Andorra': 376, 'Angola': 244}
+new_dct=OrderedDict(d.items())
+
+for key in new_dct:
+    print (key, new_dct[key])
+
+print("\nIn reverse order:")
+for key in reversed(new_dct):
+    print (key, new_dct[key])
+Afghanistan 93
+Albania 355
+Algeria 213
+Andorra 376
+Angola 244
+
+In reverse order:
+Angola 244
+Andorra 376
+Algeria 213
+Albania 355
+Afghanistan 93
+#35-group a sequence of key-value pairs into a dictionary of lists
+from collections import defaultdict
+class_roll = [('v', 1), ('vi', 2), ('v', 3), ('vi', 4), ('vii', 1)]
+d=defaultdict(list)
+
+for key,val in class_roll:
+    d[key].append(val)
+print(d)
+defaultdict(<class 'list'>, {'v': [1, 3], 'vi': [2, 4], 'vii': [1]})
+#36-compare two unordered lists (not sets)
+from collections import Counter
+n1 = [20, 10, 30, 10, 20, 30]
+n2 = [30, 20, 10, 30, 20, 50]
+
+print(Counter(n1) == Counter(n2))
+False
+ 
